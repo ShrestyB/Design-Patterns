@@ -1,4 +1,4 @@
-package Creational.AbstractFactory;
+package creational.factory;
 
 abstract class Product {
     protected String name;
@@ -11,3 +11,4 @@ abstract class Product {
 
     public abstract String getDetails();
 }
+

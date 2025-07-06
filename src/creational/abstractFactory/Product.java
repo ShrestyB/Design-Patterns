@@ -1,4 +1,4 @@
-package Creational.factory;
+package creational.abstractFactory;
 
 abstract class Product {
     protected String name;

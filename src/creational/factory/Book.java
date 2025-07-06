@@ -1,4 +1,4 @@
-package Creational.factory;
+package creational.factory;
 
 class Book extends Product {
     private String author;
@@ -10,6 +10,7 @@ class Book extends Product {
 
     @Override
     public String getDetails() {
-        return name  + price + ", Author: " + author;
+        return name + " - ₹" + price + ", Author: " + author;
     }
 }
+

@@ -1,4 +1,4 @@
-package Creational.AbstractFactory;
+package creational.abstractFactory;
 
 class Book extends Product {
     private String author;

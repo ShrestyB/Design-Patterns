@@ -1,4 +1,4 @@
-package Creational.Prototype;
+package creational.prototype;
 public class Product implements Prototype {
     private String name;
     private double price;

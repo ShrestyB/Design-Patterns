@@ -1,4 +1,4 @@
-package Creational.AbstractFactory;
+package creational.abstractFactory;
 
 class ElectronicsStoreFactory implements StoreFactory {
     @Override

@@ -1,4 +1,4 @@
-package Creational.factory;
+package creational.factory;
 
 class Clothing extends Product {
     private String size;
@@ -10,6 +10,7 @@ class Clothing extends Product {
 
     @Override
     public String getDetails() {
-        return name + +price + ", Size: " + size;
+        return name + " - ₹" + price + ", Size: " + size;
     }
 }
+

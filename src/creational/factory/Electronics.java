@@ -1,4 +1,4 @@
-package Creational.AbstractFactory;
+package creational.factory;
 
 class Electronics extends Product {
     private int warranty;
@@ -10,6 +10,7 @@ class Electronics extends Product {
 
     @Override
     public String getDetails() {
-        return name  + price + ", Warranty: " + warranty + " years";
+        return name + +price + ", Warranty: " + warranty + " years";
     }
 }
+
