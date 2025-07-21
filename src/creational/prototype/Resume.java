@@ -44,6 +44,12 @@ class Resume implements Cloneable {
         experiences.add(exp);
     }
 
+    public void updateExperience(int index, Experience newExp) {
+        if (newExp == null) throw new IllegalArgumentException("Experience cannot be null");
+        if (index < 0 || index >= experiences.size()) throw new IndexOutOfBoundsException("Invalid experience index");
+        experiences.set(index, newExp);
+    }
+
     public Resume shallowClone() {
         try {
             Resume clone = (Resume) super.clone();
@@ -56,15 +62,11 @@ class Resume implements Cloneable {
 
     public Resume deepClone() {
         try {
-            Resume clone = (Resume) super.clone();
-            // Deep copy: new list and cloned experiences
             List<Experience> clonedList = new ArrayList<>();
             for (Experience exp : this.experiences) {
                 clonedList.add(exp.clone());
             }
-            // Use reflection or a private constructor if you want to set final fields, or keep experiences non-final
-            // Here, we use a workaround by setting via reflection if needed, or make experiences non-final
-            // For now, assign directly (since it's a private field in the same class)
+            
             Resume result = new Resume(this.name, this.templateStyle);
             for (Experience exp : clonedList) {
                 result.addExperience(exp);

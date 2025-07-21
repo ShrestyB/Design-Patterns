@@ -49,12 +49,8 @@ public class Main {
             System.out.print("\nEnter new company name for the first experience in template: ");
             String newCompany = scanner.nextLine();
             Experience oldExp = templateExperiences.get(0);
-            // Replace the first experience with a new one (since Experience is now immutable)
             Experience updatedExp = new Experience(newCompany, oldExp.getYears());
-            // Remove and add to the original template's experience list
-            // (Assuming Resume has a method to update experience, or re-create Resume if needed)
-            // For now, let's just inform the user that this is the new way
-            System.out.println("(Note: To update, remove and add new Experience due to immutability.)");
+            template.updateExperience(0, updatedExp);
         }
 
         System.out.println("\nAfter Modifying Template's Experience");
