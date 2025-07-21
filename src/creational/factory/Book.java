@@ -10,7 +10,7 @@ class Book extends Product {
 
     @Override
     public String getDetails() {
-        return name + " - ₹" + price + ", Author: " + author;
+        return name + " - Rs." + price + ", Author: " + author;
     }
 }
 

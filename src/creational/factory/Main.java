@@ -5,35 +5,71 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        ProductFactory factory = new ProductFactory();
 
-        System.out.println("Enter product type (CLOTHING, ELECTRONICS, BOOK):");
-        String typeInput = scanner.nextLine().toUpperCase();
-        ProductType type = ProductType.valueOf(typeInput);
+        for (ProductType type : ProductType.values()) {
+            System.out.println("- " + type.name().toLowerCase());
+        }
+        System.out.print("Choose product type from above : ");
+        String typeInput = scanner.nextLine().trim().toUpperCase();
 
-        System.out.println("Enter product name:");
-        String name = scanner.nextLine();
-
-        System.out.println("Enter product price:");
-        double price = Double.parseDouble(scanner.nextLine());
-
-        String additionalDetail = "";
-        switch (type) {
-            case CLOTHING:
-                System.out.println("Enter size:");
-                additionalDetail = scanner.nextLine();
-                break;
-            case ELECTRONICS:
-                System.out.println("Enter warranty (years):");
-                additionalDetail = scanner.nextLine();
-                break;
-            case BOOK:
-                System.out.println("Enter author:");
-                additionalDetail = scanner.nextLine();
-                break;
+        ProductType type = null;
+        try {
+            type = ProductType.valueOf(typeInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid product type. Please choose from the available options.");
+            scanner.close();
+            return;
         }
 
-        Product product = ProductFactory.createProduct(type, name, price, additionalDetail);
-        System.out.println(product.getDetails());
+        System.out.print("Enter product name: ");
+        String name = scanner.nextLine().trim();
+        if (name.isEmpty()) {
+            System.out.println("Product name cannot be empty");
+            scanner.close();
+            return;
+        }
+
+        System.out.print("Enter product price: ");
+        double price;
+        try {
+            price = Double.parseDouble(scanner.nextLine().trim());
+            if (price < 0) {
+                System.out.println("Price cannot be negative");
+                scanner.close();
+                return;
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid price format. Please enter a valid number.");
+            scanner.close();
+            return;
+        }
+
+        String additionalPrompt;
+        switch (type) {
+            case ELECTRONICS:
+                additionalPrompt = "Enter warranty (years): ";
+                break;
+            case CLOTHING:
+                additionalPrompt = "Enter size: ";
+                break;
+            case BOOK:
+                additionalPrompt = "Enter author: ";
+                break;
+            default:
+                System.out.println("Unknown product type");
+                scanner.close();
+                return;
+        }
+        System.out.print(additionalPrompt);
+        String additionalDetail = scanner.nextLine().trim();
+
+        try {
+            Product product = factory.createProduct(type, name, price, additionalDetail);
+            System.out.println("Product Details: " + product.getDetails());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
 
         scanner.close();
     }

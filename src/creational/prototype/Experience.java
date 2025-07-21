@@ -1,40 +1,37 @@
 package creational.prototype;
 
+import java.util.Objects;
 
 class Experience implements Cloneable {
-    private String company;
-    private int years;
+    private final String company;
+    private final int years;
 
     public Experience(String company, int years) {
-        setCompany(company);
-        setYears(years);
+        if (company == null || company.trim().isEmpty()) {
+            throw new IllegalArgumentException("Company name cannot be null or empty");
+        }
+        if (years < 0) {
+            throw new IllegalArgumentException("Years of experience cannot be negative");
+        }
+        this.company = company.trim();
+        this.years = years;
     }
 
     public String getCompany() {
         return company;
     }
 
-    public void setCompany(String company) {
-        if (company == null || company.trim().isEmpty()) {
-            throw new IllegalArgumentException("Company name cannot be null or empty");
-        }
-        this.company = company.trim();
-    }
-
     public int getYears() {
         return years;
     }
 
-    public void setYears(int years) {
-        if (years < 0) {
-            throw new IllegalArgumentException("Years of experience cannot be negative");
-        }
-        this.years = years;
-    }
-
     @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
+    public Experience clone() {
+        try {
+            return (Experience) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Cloning Experience failed: " + e.getMessage(), e);
+        }
     }
 
     @Override
@@ -52,6 +49,6 @@ class Experience implements Cloneable {
 
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(company, years);
+        return Objects.hash(company, years);
     }
 }

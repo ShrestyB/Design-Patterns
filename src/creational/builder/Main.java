@@ -1,8 +1,12 @@
 package creational.builder;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        Checkout checkout = new Checkout.CheckoutBuilder("Laptop, Headphones", "123 Street, NY")
+        List<String> cart1 = Arrays.asList("Laptop", "Headphones");
+        Checkout checkout = new Checkout.CheckoutBuilder(cart1, "123 Street, NY")
                 .setPaymentMethod("Credit Card")
                 .setDiscountCode("DISCOUNT10")
                 .build();
@@ -11,7 +15,8 @@ public class Main {
 
         System.out.println("\n--- Another Checkout ---\n");
 
-        Checkout checkout2 = new Checkout.CheckoutBuilder("Smartphone", "456 Avenue, LA")
+        List<String> cart2 = Arrays.asList("Smartphone");
+        Checkout checkout2 = new Checkout.CheckoutBuilder(cart2, "456 Avenue, LA")
                 .setPaymentMethod("PayPal")
                 .build();
 

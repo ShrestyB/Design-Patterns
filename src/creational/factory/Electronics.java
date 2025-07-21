@@ -10,7 +10,7 @@ class Electronics extends Product {
 
     @Override
     public String getDetails() {
-        return name + +price + ", Warranty: " + warranty + " years";
+        return name + " - Rs." + price + ", Warranty: " + warranty + " years";
     }
 }
 

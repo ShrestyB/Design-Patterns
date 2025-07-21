@@ -11,34 +11,32 @@ public class Main {
             System.out.println("- " + type.getDisplayName().toLowerCase());
         }
         System.out.print("Choose store type: ");
-        String storeTypeInput = scanner.nextLine().trim().toLowerCase();
+        String storeTypeInput = scanner.nextLine().trim().toUpperCase();
 
-        StoreFactory factory;
         ProductType selectedType = null;
-        
         try {
-            switch (storeTypeInput) {
-                case "electronics":
-                    factory = new ElectronicsStoreFactory();
-                    selectedType = ProductType.ELECTRONICS;
-                    break;
-                case "clothing":
-                    factory = new ClothingStoreFactory();
-                    selectedType = ProductType.CLOTHING;
-                    break;
-                case "book":
-                    factory = new BookStoreFactory();
-                    selectedType = ProductType.BOOK;
-                    break;
-                default:
-                    System.out.println("Invalid store type. Please choose from the available options.");
-                    scanner.close();
-                    return;
-            }
-        } catch (Exception e) {
-            System.out.println("Error creating factory: " + e.getMessage());
+            selectedType = ProductType.valueOf(storeTypeInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid store type. Please choose from the available options.");
             scanner.close();
             return;
+        }
+
+        StoreFactory factory;
+        switch (selectedType) {
+            case ELECTRONICS:
+                factory = new ElectronicsStoreFactory();
+                break;
+            case CLOTHING:
+                factory = new ClothingStoreFactory();
+                break;
+            case BOOK:
+                factory = new BookStoreFactory();
+                break;
+            default:
+                System.out.println("Invalid store type. Please choose from the available options.");
+                scanner.close();
+                return;
         }
 
         try {

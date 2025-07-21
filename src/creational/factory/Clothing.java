@@ -10,7 +10,7 @@ class Clothing extends Product {
 
     @Override
     public String getDetails() {
-        return name + " - ₹" + price + ", Size: " + size;
+        return name + " - Rs." + price + ", Size: " + size;
     }
 }
 
