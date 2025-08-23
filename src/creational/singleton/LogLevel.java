@@ -1,4 +1,4 @@
-package Creational.singleton;
+package creational.singleton;
 
 public enum LogLevel {
     INFO,ERROR,DEBUG

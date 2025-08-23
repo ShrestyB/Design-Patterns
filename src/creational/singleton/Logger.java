@@ -1,4 +1,4 @@
-package Creational.singleton;
+package creational.singleton;
 
 import java.time.LocalDateTime;
 

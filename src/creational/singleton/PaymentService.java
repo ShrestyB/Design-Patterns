@@ -1,4 +1,4 @@
-package Creational.singleton;
+package creational.singleton;
 
 public class PaymentService {
     public void processPayment() {
