@@ -1,9 +1,5 @@
 package structural.flyweight;
 
-/**
- * CharacterStyle - Flyweight class containing shared formatting properties
- * This represents the intrinsic (shared) state that can be reused
- */
 public class CharacterStyle {
     private final String font;
     private final int size;

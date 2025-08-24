@@ -3,10 +3,6 @@ package structural.flyweight;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * StyleFactory - Manages and caches flyweight objects
- * Ensures identical styles are shared rather than creating duplicates
- */
 public class StyleFactory {
     private static final Map<String, CharacterStyle> styleCache = new HashMap<>();
     
