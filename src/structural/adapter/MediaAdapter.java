@@ -1,18 +1,19 @@
 package structural.adapter;
 
 public class MediaAdapter implements MediaPlayer {
-    private static final String TYPE_VLC = "vlc";
-    private static final String TYPE_MP4 = "mp4";
-
     private AdvancedMediaPlayer advancedPlayer;
 
     public MediaAdapter(String audioType) {
-        if (audioType.equalsIgnoreCase(TYPE_VLC)) {
-            advancedPlayer = new VlcPlayer();
-        } else if (audioType.equalsIgnoreCase(TYPE_MP4)) {
-            advancedPlayer = new Mp4Player();
-        } else {
-            advancedPlayer = null;
+        MediaType type = MediaType.fromString(audioType);
+        switch (type) {
+            case VLC:
+                advancedPlayer = new VlcPlayer();
+                break;
+            case MP4:
+                advancedPlayer = new Mp4Player();
+                break;
+            default:
+                advancedPlayer = null;
         }
     }
 
@@ -22,10 +23,18 @@ public class MediaAdapter implements MediaPlayer {
             System.out.println("Invalid media type: " + audioType + " format not supported");
             return;
         }
-        if (audioType.equalsIgnoreCase(TYPE_VLC)) {
-            advancedPlayer.playVlc(fileName);
-        } else if (audioType.equalsIgnoreCase(TYPE_MP4)) {
-            advancedPlayer.playMp4(fileName);
+        
+        MediaType type = MediaType.fromString(audioType);
+        switch (type) {
+            case VLC:
+                advancedPlayer.playVlc(fileName);
+                break;
+            case MP4:
+                advancedPlayer.playMp4(fileName);
+                break;
+            case MP3:
+                // MP3 is handled directly by AudioPlayer, not through adapter
+                break;
         }
     }
 }
